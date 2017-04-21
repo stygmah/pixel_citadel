@@ -18,6 +18,11 @@ app.get('/api/getGame',(req,res)=>{
 
 });
 
+requests.getGameAll(1050).then((item)=>{
+	console.log(item);
+});
+
+
 
 app.listen(port,()=>{
 	console.log('Server running on port',port);

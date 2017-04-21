@@ -21,5 +21,8 @@ var genreArray = {
 	'32':"Indie",
 	'33':"Arcade"
 };
-/*Game Category Array*/
+//Game Category Array
+//
+//Sorted by order matching
+//reference int
 var gameCategory = ['Main Game', 'DLC/Addon', 'Expansion','Bundle','Standalone Expansion'];
