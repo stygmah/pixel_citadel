@@ -1,5 +1,5 @@
 var unirest = require('unirest');
-
+var {image} = require('igdb-api-node');
 
 //API Config
 const mashapeKey = "7trttflEhpmshdEHi1QDgdONAh7Jp1vZAHWjsnCV3jloxiWLIk";
@@ -19,9 +19,9 @@ var getGame = (game)=>{
 		.header("Accept", "application/json")
 		.end(function (result) {
 			if(result.status!=200){
-				console.log(result.status);
 				reject(result.status);
 			}else{
+				result.body[0].coverMain = image(result.body[0].cover,'cover_big','jpg');
 				resolve(result.body[0]);
 			}
 		});
@@ -68,6 +68,7 @@ var consoleArrayResolve = (game)=>{
 	for(var i = 0; i<unresolvedArray.length;i++){
 		resolvedArray.push(unresolvedArray[i].platform);
 	}
+
 	return resolvedArray;
 }
 
@@ -140,11 +141,15 @@ var getGameAll = (game)=>{
 		getGame(game)
 			.then((resultGame)=>{
 				gameFullObject = resultGame;
-
 				//get developers
 				companyArrayNameResolve(resultGame.developers).then((item)=>{
 					successCount++;
 					gameFullObject.developers = item;
+					if(successCount===3){
+						resolve(gameFullObject);
+					}
+				}).catch(()=>{
+					successCount++;
 					if(successCount===3){
 						resolve(gameFullObject);
 					}
@@ -156,6 +161,11 @@ var getGameAll = (game)=>{
 					if(successCount===3){
 						resolve(gameFullObject);
 					}
+				}).catch(()=>{
+					successCount++;
+					if(successCount===3){
+						resolve(gameFullObject);
+					}
 				});
 				//get consoles
 				consoleArrayNameResolve(consoleArrayResolve(resultGame)).then((item)=>{
@@ -164,17 +174,43 @@ var getGameAll = (game)=>{
 					if(successCount===3){
 						resolve(gameFullObject);
 					}
+				}).catch(()=>{
+					successCount++;
+					if(successCount===3){
+						resolve(gameFullObject);
+					}
 				});
-
-
 			})
-
 			.catch((resultGameError)=>{
 				reject(resultGameError);
 			})
 		}
 	);
 }
+
+//////
+//GET SEARCH REQUESTS
+//////
+
+//General search
+//
+//INPUT: 3 arguments: type(games,companies,platforms), string of search, limit of search
+//RETURN: Array of objects
+var search = (type,searchID,limit)=>{
+	return new Promise((resolve,reject)=>{
+		unirest.get(url+type+'/?fields=id%2Cname&limit='+limit+'&offset=0&order=release_dates.date%3Adesc&search='+searchID)
+		.header("X-Mashape-Key", mashapeKey)
+		.header("Accept", "application/json")
+		.end(function (result) {
+			if(result.status!=200){
+				reject(result.status);
+			}else{
+				resolve(result.body);
+			}
+		});
+	});
+}
+
 
 
 
@@ -183,6 +219,7 @@ module.exports = {
 	getGame,
 	getConsole,
 	getCompany,
-	getGameAll
+	getGameAll,
+	search
 }
 

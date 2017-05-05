@@ -1,5 +1,6 @@
 @import "base/variables";
-body {
-    color: $main;
-}
+@import "components/main";
+@import "components/nav";
+@import "components/home";
+@import "components/gameView";
 

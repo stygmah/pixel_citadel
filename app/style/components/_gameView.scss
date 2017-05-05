@@ -1,0 +1,25 @@
+
+.game-cover{
+	height:240px;
+	background-color: $primaryColor;
+}
+.game-window{
+	background-color: $secondaryColor;
+}
+.game-image{
+	position:absolute;
+    top:100px;
+    // margin-top:-8px; 
+    margin-left: 60px;
+}
+.game-info{
+	//margin-left: 30%;
+}
+.aux-image-div{
+	// width:30%;
+	height:150px;
+}
+.top-info{
+	position: absolute;
+	top:100px;
+}
