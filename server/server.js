@@ -25,13 +25,19 @@ app.use(function(req, res, next) {
 //API ROUTES
 //////////
 
-///SIMPLE GET REQUESTS
+
+//
+//GET REQ.
+//
+
+///****SIMPLE GET REQUESTS****////
 
 //Get Game GET Request
 app.get('/api/game/:id',(req,res)=>{
 	console.log('recieved');
 	requests.getGameAll(req.params.id)
 	.then((item)=>{	
+		console.log(item);
 		res.send(item);
 	})
 	.catch(()=>{
@@ -61,7 +67,7 @@ app.get('/api/company/:id',(req,res)=>{
 	})
 });
 
-//Search
+//****SEARCH REQUESTS****////
 //
 //Takes 2 query parameters after search string: 
 //type (games,platforms,companies) and limit
@@ -75,6 +81,9 @@ app.get('/api/search/:search',(req,res)=>{
 	})
 });
 
+//
+//POST REQ
+//
 
 app.listen(port,()=>{
 	console.log('Server running on port',port);

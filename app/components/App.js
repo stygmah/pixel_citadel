@@ -1,11 +1,10 @@
-var React = require('react');
-var ReactRouter = require('react-router-dom');
-var Router = ReactRouter.BrowserRouter;
-var Route = ReactRouter.Route;
-var Switch = ReactRouter.Switch;
-var Nav = require('./Nav');
-var GameView = require('./GameView');
-var Home = require('./Home');
+import React from 'react'
+import ReactRouter, {BrowserRouter, Route, Switch} from 'react-router-dom';
+var Router = BrowserRouter;
+
+import Nav from './nav';
+import GameView from './game-view';
+import Home from'./home';
 
 
 

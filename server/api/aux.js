@@ -26,3 +26,4 @@ var genreArray = {
 //Sorted by order matching
 //reference int
 var gameCategory = ['Main Game', 'DLC/Addon', 'Expansion','Bundle','Standalone Expansion'];
+const IGN_KEY = '81465ce236eb435e9e3571ec74790c75';

@@ -1,8 +1,8 @@
-var React = require('react');
-var {NavLink} = require('react-router-dom');
+import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 
-function Nav () {
+var Nav = () =>{
 	return(
 
 			<nav className="top-bar main-navigation">
@@ -49,4 +49,4 @@ function Nav () {
 	)
 }
 
-module.exports = Nav;
+export default Nav;

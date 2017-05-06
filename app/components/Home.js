@@ -1,7 +1,7 @@
-var React = require('react');
+import React, {Component} from 'react';
 
 
-class Home extends React.Component {
+class Home extends Component {
 	render(){
 		return(
 			<div className='home'>
@@ -11,4 +11,4 @@ class Home extends React.Component {
 	}
 }
 
-module.exports = Home;
+export default Home;
