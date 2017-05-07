@@ -5,6 +5,7 @@
 }
 .game-window{
 	background-color: $secondaryColor;
+	min-height: 300px;
 }
 .game-image{
 	position:absolute;
@@ -22,4 +23,5 @@
 .top-info{
 	position: absolute;
 	top:100px;
+	padding-right: 27px;
 }

@@ -197,6 +197,8 @@ var getGameAll = (game)=>{
 //INPUT: 3 arguments: type(games,companies,platforms), string of search, limit of search
 //RETURN: Array of objects
 var search = (type,searchID,limit)=>{
+	console.log(url+type+'/?fields=id%2Cname&limit='+limit+'&offset=0&order=release_dates.date%3Adesc&search='+searchID);
+
 	return new Promise((resolve,reject)=>{
 		unirest.get(url+type+'/?fields=id%2Cname&limit='+limit+'&offset=0&order=release_dates.date%3Adesc&search='+searchID)
 		.header("X-Mashape-Key", mashapeKey)

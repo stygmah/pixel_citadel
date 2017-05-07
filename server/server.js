@@ -34,7 +34,6 @@ app.use(function(req, res, next) {
 
 //Get Game GET Request
 app.get('/api/game/:id',(req,res)=>{
-	console.log('recieved');
 	requests.getGameAll(req.params.id)
 	.then((item)=>{	
 		console.log(item);
@@ -46,7 +45,6 @@ app.get('/api/game/:id',(req,res)=>{
 });
 //Get Console GET Request
 app.get('/api/system/:id',(req,res)=>{
-	console.log(req.params.id);
 	requests.getConsole(req.params.id)
 	.then((item)=>{	
 		res.send(item);
@@ -57,7 +55,6 @@ app.get('/api/system/:id',(req,res)=>{
 });
 //Get Company GET Request
 app.get('/api/company/:id',(req,res)=>{
-	console.log(req.params.id);
 	requests.getCompany(req.params.id)
 	.then((item)=>{	
 		res.send(item);
@@ -71,12 +68,15 @@ app.get('/api/company/:id',(req,res)=>{
 //
 //Takes 2 query parameters after search string: 
 //type (games,platforms,companies) and limit
-app.get('/api/search/:search',(req,res)=>{
-	requests.search(req.query.type,req.params.search,req.query.limit)
+app.get('/api/search/',(req,res)=>{
+	console.log('Recieved');
+	requests.search(req.query.type,req.query.search,req.query.limit)
 	.then((item)=>{	
+		console.log(item);
 		res.send(item);
 	})
-	.catch(()=>{
+	.catch((e)=>{
+		console.log(e);
 		res.status(404).send('404');
 	})
 });

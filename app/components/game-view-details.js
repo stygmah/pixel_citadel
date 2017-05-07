@@ -8,7 +8,7 @@ const GameViewDetails = (props)=>{
 	const developers = props.game.developers.map((developer)=>{
 		return developer.name + ' - ';
 	});
-
+	
 	return(
 				<div className='row game-window'>
 					<img src={props.game.coverMain} className='game-image '/>
